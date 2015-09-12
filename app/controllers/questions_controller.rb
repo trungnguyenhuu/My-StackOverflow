@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
         before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-        before_action :find_question, only: [:show, :edit, :update]
+        before_action :find_question, only: [:show, :edit, :update, :destroy]
         before_action :check_question_with_user, only: [:edit, :destroy]
 
         def index
@@ -36,7 +36,10 @@ class QuestionsController < ApplicationController
                end
         end
 
+        #can coi lai
         def destroy
+                @question.destroy
+                redirect_to profile_path
         end
 
 
