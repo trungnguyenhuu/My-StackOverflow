@@ -3,5 +3,6 @@ class CustomUsersController < ApplicationController
 
         def profile
                 @questions = current_user.questions
+                @answers = current_user.answers.includes(:question)
         end
 end
