@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
-        before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-        before_action :find_question, only: [:show, :edit, :update, :destroy]
+        before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :up, :down]
+        before_action :find_question, only: [:show, :edit, :update, :destroy, :up, :down]
         before_action :check_question_with_user, only: [:edit, :destroy]
 
         def index
@@ -43,9 +43,35 @@ class QuestionsController < ApplicationController
         end
 
 
+        def up
+                #check whether or not user already voted this question
+                @vote = @question.votes.where(user: current_user).first
+                if !@vote
+                        @vote = Vote.create(votable: @question, user: current_user, vote_up: true)
+                else
+                        @vote.update(vote_up: true)
+                end
+                render nothing: true, status: :ok
+        end
+
+        def down
+                #check whether or not user already voted this question
+                @vote = @question.votes.where(user: current_user).first
+                if !@vote
+                        @vote = Vote.create(votable: @question, user: current_user, vote_up: false)
+                else
+                        @vote.update(vote_up: false)
+                end
+                render nothing: true, status: :ok
+        end
+
+
+
+
         def question_params
                 params.require(:question).permit(:title, :content)
         end
+
         def find_question
                 @question = Question.find(params[:id])
         end
