@@ -23,11 +23,20 @@ Rails.application.routes.draw do
 
   resources :questions do 
           resources :answers
+
+          # questions/:question_id/commments
+          # answers/:answer_id/comments
+          resources :comments
   end
+
+  resources :answers do
+          resources :comments
+  end
+
   # resources :users do
   #         resources :questions
   # end
-        root "questions#index"
+  root "questions#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

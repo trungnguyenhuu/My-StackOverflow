@@ -1,10 +1,37 @@
-<h2><%=  @question.title%></h2>
-<h4>Asked by <%= @question.user.email %></h4>
-<br>
-<div>
-        <%= @question.content %>
-</div>
+<div class="question">
+        <h2><%=  @question.title%></h2>
+        <h4>Asked by <%= @question.user.email %></h4>
+        <br>
+        <div>
+                <%= @question.content %>
+        </div>
 
+
+        <hr>
+        <div class="comments-container" style="margin-left: 100px;">
+                <%= link_to "Comment this question", new_question_comment_path(@question) %>
+                <hr>
+                <div class="list-comments">
+                        <h3><%= @question.comments.count%> Comments</h3>
+                        <% @question.comments.includes(:user).each do |comment|%>
+                                <div class="comment">
+                                        <h4><%=comment.user.email%> at <%= comment.updated_at%></h4>
+                                        <div class="content">
+                                                <%= comment.content%>
+                                        </div>
+                                        <div class="action">
+                                                <% if comment.user == current_user %>
+                                                        <%= link_to "Edit", edit_question_comment_path(@question, comment) %>
+                                                        <%= link_to "Delete", question_comment_path(@question, comment), method: :delete, data: { confirm: 'Are you sure?' }%>
+                                                <% end %>
+ 
+                                        </div>
+                                </div>
+                                <hr>
+                        <% end %>
+                </div>
+        </div>
+</div>
 <hr>
 <%= link_to "Answer this question", new_question_answer_path(@question) %>
 <hr>
