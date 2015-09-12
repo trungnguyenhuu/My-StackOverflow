@@ -1,4 +1,5 @@
-<h1><%=  @question.title%></h1>
+<h2><%=  @question.title%></h2>
+<h4>Asked by <%= @question.user.email %></h4>
 <br>
 <div>
         <%= @question.content %>
@@ -8,7 +9,7 @@
 <%= link_to "Answer this question", new_question_answer_path(@question) %>
 <hr>
 
-<h3>List answers</h3>
+<h3><%= @question.answers.count%> Answers</h3>
 <% if @question.answers.empty? %>
         <h4>Empty</h4>
 <% end %>
