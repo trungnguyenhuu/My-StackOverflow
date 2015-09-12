@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   end
 
   resources :questions do 
-          resources :answers
+          resources :answers do 
+                  member do 
+                          put "up" 
+                          put "down"
+                  end
+          end
 
           # questions/:question_id/commments
           # answers/:answer_id/comments
@@ -36,6 +41,7 @@ Rails.application.routes.draw do
 
   resources :answers do
           resources :comments
+
   end
 
   # resources :users do
