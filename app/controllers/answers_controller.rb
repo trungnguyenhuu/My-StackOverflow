@@ -33,6 +33,9 @@ class AnswersController < ApplicationController
 
 
         def destroy
+                @answer.comments.destroy_all
+                @answer.votes.destroy_all
+
                 @answer.destroy
                 redirect_to question_path(@question), notice: "Delete answer successfully"
         end

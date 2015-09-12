@@ -38,7 +38,13 @@ class QuestionsController < ApplicationController
 
         #can coi lai
         def destroy
+                #clear all dependent before delete question
+                @question.answers.destroy_all
+                @question.comments.destroy_all
+                @question.votes.destroy_all
+                
                 @question.destroy
+
                 redirect_to profile_path
         end
 
