@@ -35,7 +35,7 @@
                         <h3><%= @question.comments.count%> Comments</h3>
                         <% @question.comments.includes(:user).each do |comment|%>
                                 <div class="comment">
-                                        <h4><%=comment.user.email%> at <%= comment.updated_at%></h4>
+                                        <h4><%=comment.user.email%> at <i style="color: gray;"><%= time_ago_in_words(comment.updated_at)%></i></h4>
                                         <div class="content">
                                                 <%= comment.content%>
                                         </div>
@@ -104,7 +104,7 @@
                                         <h3><%= answer.comments.count%> Comments</h3>
                                         <% answer.comments.each do |comment|%>
                                                 <div class="comment">
-                                                        <h4><%=comment.user.email%> at <%= comment.updated_at%></h4>
+                                                        <h4><%=comment.user.email%> at <i style="color: gray;"><%= time_ago_in_words(comment.updated_at)%></i></h4>
                                                         <div class="content">
                                                                 <%= comment.content%>
                                                         </div>
