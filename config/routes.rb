@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'answers/new'
+
+  get 'answers/edit'
+
   # get 'questions/index'
   #
   # get 'questions/show'
@@ -17,7 +21,9 @@ Rails.application.routes.draw do
   devise_for :users do 
   end
 
-  resources :questions
+  resources :questions do 
+          resources :answers
+  end
   # resources :users do
   #         resources :questions
   # end

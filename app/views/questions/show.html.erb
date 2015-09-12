@@ -3,3 +3,25 @@
 <div>
         <%= @question.content %>
 </div>
+
+<hr>
+<%= link_to "Answer this question", new_question_answer_path(@question) %>
+<hr>
+
+<h3>List answers</h3>
+<% if @question.answers.empty? %>
+        <h4>Empty</h4>
+<% end %>
+
+<% @question.answers.includes(:user).each do |answer| %>
+
+        <div>
+                <p><%= answer.user.email%></p>
+                <p><%= answer.content %></p>
+                <% if answer.user == current_user %>
+                        <%= link_to "Edit", edit_question_answer_path(@question, answer) %>
+                        <%= link_to "Delete", question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' }%>
+                <% end %>
+        </div>
+        <hr>
+<% end %>

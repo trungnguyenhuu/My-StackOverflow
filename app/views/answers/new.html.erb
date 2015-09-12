@@ -1,0 +1,10 @@
+<h1><%=  @question.title%></h1>
+<br>
+<div>
+     <%= @question.content %>
+</div>
+<br>
+<h3>Enter your answers</h3>
+<%= render "form" %>
+
+<%= link_to 'Back', question_path(@question) %>
