@@ -1,8 +1,18 @@
 <h1>List questions</h1>
 <%= link_to "Add new question", new_question_path %>
-<ul>
+<hr>
+<div class="questions-container">
+
         <% @questions.each do  |question|%>
-                <li><%= question.title %> posted by <%= question.user.email%> <%= link_to "Detail", question_path(question)%></li>
+                <div class="question">
+                        <div class="content">
+                                <%= link_to question.title, question_path(question)%>
+                        </div>
+                        <div class="some-info">
+                                by <%= question.user.email%> at <i style="color: gray;"><%= time_ago_in_words(question.updated_at)%></i>
+                        </div>
+                </div>
+                <hr>
         <% end %>
-</ul>
+</div>
 

@@ -3,19 +3,6 @@ Rails.application.routes.draw do
 
   get 'answers/edit'
 
-  # get 'questions/index'
-  #
-  # get 'questions/show'
-  #
-  # get 'questions/new'
-  #
-  # get 'questions/create'
-  #
-  # get 'questions/edit'
-  #
-  # get 'questions/update'
-  #
-  # get 'questions/destroy'
 
   get "/profile" => "custom_users#profile"
   devise_for :users do 
