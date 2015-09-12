@@ -4,6 +4,17 @@
         <br>
         <div>
                 <%= @question.content %>
+
+                <div class="votes" style="overflow:hidden;margin-top: 20px;">
+                        <div class="vote-up" style="float:left;">
+                                <%= link_to "Vote up", up_question_path(@question), method: :put %>
+                                <span><%= @question.votes.where(vote_up: true).count%></span>
+                        </div>
+                        <div class="vote-down" style="float:left; margin-left: 20px;">
+                                <%= link_to "Vote down", down_question_path(@question), method: :put %>
+                                <span><%= @question.votes.where(vote_up: false).count %></span>
+                        </div>
+                </div>
         </div>
 
 
@@ -82,3 +93,10 @@
                 <hr>
         <% end %>
 </div>
+<!-- <script type="text/javascript" charset="utf&#45;8"> -->
+<!--         console.log("in javascript"); -->
+<!--         $(document).ready(function(){ -->
+<!--  -->
+<!--                 alert("ready"); -->
+<!--         }); -->
+<!-- </script> -->

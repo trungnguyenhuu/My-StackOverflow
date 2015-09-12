@@ -29,8 +29,8 @@ Rails.application.routes.draw do
           resources :comments
 
           member do 
-                  post "up"  => "votes#up"
-                  post "down"  => "votes#down"
+                  put "up" 
+                  put "down"
           end
   end
 

@@ -51,10 +51,11 @@ class QuestionsController < ApplicationController
                 else
                         @vote.update(vote_up: true)
                 end
-                render nothing: true, status: :ok
+                redirect_to @question, notice: "Vote up successfully"
         end
 
         def down
+                # byebug
                 #check whether or not user already voted this question
                 @vote = @question.votes.where(user: current_user).first
                 if !@vote
@@ -62,7 +63,7 @@ class QuestionsController < ApplicationController
                 else
                         @vote.update(vote_up: false)
                 end
-                render nothing: true, status: :ok
+                redirect_to @question, notice: "Vote down successfully"
         end
 
 
