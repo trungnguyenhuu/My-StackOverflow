@@ -1,0 +1,8 @@
+<h1>List questions</h1>
+<%= link_to "Add new question", new_question_path %>
+<ul>
+        <% @questions.each do  |question|%>
+                <li><%= question.title %> posted by <%= question.user.email%> <%= link_to "Detail", question_path(question)%></li>
+        <% end %>
+</ul>
+

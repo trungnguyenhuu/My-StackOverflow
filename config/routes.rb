@@ -1,6 +1,27 @@
 Rails.application.routes.draw do
-  devise_for :users
-        root "welcome#index"
+  # get 'questions/index'
+  #
+  # get 'questions/show'
+  #
+  # get 'questions/new'
+  #
+  # get 'questions/create'
+  #
+  # get 'questions/edit'
+  #
+  # get 'questions/update'
+  #
+  # get 'questions/destroy'
+
+  get "/profile" => "custom_users#profile"
+  devise_for :users do 
+  end
+
+  resources :questions
+  # resources :users do
+  #         resources :questions
+  # end
+        root "questions#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
