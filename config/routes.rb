@@ -27,6 +27,11 @@ Rails.application.routes.draw do
           # questions/:question_id/commments
           # answers/:answer_id/comments
           resources :comments
+
+          member do 
+                  post "up"  => "votes#up"
+                  post "down"  => "votes#down"
+          end
   end
 
   resources :answers do
